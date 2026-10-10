@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Calculadora con Validaciones</h2>
+        <p>Haz clic en el botón para comenzar a operar:</p>
+        <button onclick="ejecutarCalculadora()">Iniciar Calculadora</button>
+    </div>
+
+    <script>
+        function ejecutarCalculadora() {
+            // 1. Solicitar y validar el primer número
+            let input1 = prompt("Ingresa el primer número:");
+            if (input1 === null || input1.trim() === "") {
+                alert("Operación cancelada.");
+                return;
+            }
+            let num1 = parseFloat(input1);
+            if (isNaN(num1)) {
+                alert("Error: El valor ingresado no es un número válido.");
+                return;
+            }
+
+            // 2. Solicitar y validar el segundo número
+            let input2 = prompt("Ingresa el segundo número:");
+            if (input2 === null || input2.trim() === "") {
+                alert("Operación cancelada.");
+                return;
+            }
+            let num2 = parseFloat(input2);
+            if (isNaN(num2)) {
+                alert("Error: El valor ingresado no es un número válido.");
+                return;
+            }
+
+            // 3. Mostrar opciones de operaciones
+            let operacion = prompt(
+                "Elige una operación:\n" +
+                "1. Suma (+)\n" +
+                "2. Resta (-)\n" +
+                "3. Multiplicación (*)\n" +
+                "4. División (/)\n" +
+                "Ingresa el número o el símbolo:"
+            );
+
+            let resultado;
+
+            // 4. Evaluar la opción seleccionada con validaciones
+            switch (operacion) {
+                case "1":
+                case "+":
+                    resultado = num1 + num2;
+                    alert(`Resultado de la suma: ${num1} + ${num2} = ${resultado}`);
+                    break;
+                case "2":
+                case "-":
+                    resultado = num1 - num2;
+                    alert(`Resultado de la resta: ${num1} - ${num2} = ${resultado}`);
+                    break;
+                case "3":
+                case "*":
+                    resultado = num1 * num2;
+                    alert(`Resultado de la multiplicación: ${num1} * ${num2} = ${resultado}`);
+                    break;
+                case "4":
+                case "/":
+                    if (num2 === 0) {
+                        alert("Error: No se puede dividir entre cero (0).");
+                    } else {
+                        resultado = num1 / num2;
+                        alert(`Resultado de la división: ${num1} / ${num2} = ${resultado}`);
+                    }
+                    break;
+                default:
+                    alert("Error: Opción no válida.");
+            }
+        }
+    </script>
+</body>
+</html>
